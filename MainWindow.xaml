@@ -1,0 +1,51 @@
+﻿<Window x:Class="AstrologyChart.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="AstroChart for LLMs - 以字符形式输出星盘" Height="600" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- 设置面板 -->
+        <StackPanel Margin="10" MinWidth="300">
+            <GroupBox Header="基础设置">
+                <StackPanel>
+                    <DatePicker x:Name="dtPicker" SelectedDate="{Binding DateTime}"/>
+                    <ComboBox x:Name="cmbTimeZone" DisplayMemberPath="Id"/>
+                    <ComboBox x:Name="cmbHouseSystem" SelectedIndex="0">
+                        <sys:String>整宫制</sys:String>
+                    </ComboBox>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="相位设置（左侧输入角度|右侧输入容许度）">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox x:Name="txtDegree" Width="80" Margin="5"/>
+                        <TextBox x:Name="txtOrb" Width="80" Margin="5"/>
+                        <Button Content="添加" Click="AddAspect_Click"/>
+                    </StackPanel>
+                    <ListBox x:Name="lstAspects" Height="120" ItemsSource="{Binding Aspects}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayText}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </GroupBox>
+
+            <Button Content="生成" Click="Generate_Click" Margin="0 20"/>
+        </StackPanel>
+
+        <!-- 结果显示 -->
+        <TextBox Grid.Column="1" x:Name="txtResult" Margin="10" 
+                 VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+    </Grid>
+</Window>

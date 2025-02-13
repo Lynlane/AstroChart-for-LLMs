@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AstroTEXT.Models
+{
+    public class CelestialBody
+    {
+        public string Name { get; set; }
+        public double Longitude { get; set; }
+        public double Speed { get; set; }
+        public string ZodiacSign => GetZodiac(Longitude);
+
+        private static string GetZodiac(double lon)
+        {
+            string[] signs = { "白羊", "金牛", "双子", "巨蟹", "狮子", "处女",
+                          "天秤", "天蝎", "射手", "摩羯", "水瓶", "双鱼" };
+            int index = (int)(lon / 30);
+            return signs[index];
+        }
+
+        public double ZodiacDegrees => Longitude % 30;
+    }
+}
