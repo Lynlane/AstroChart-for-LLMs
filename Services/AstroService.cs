@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AstroTEXT.Models;
-using SwissEphNet;
 using System.IO;
+using AstrologyChart.Models;
+using SwissEphNet;
 
-
-namespace AstroTEXT.Services
+namespace AstrologyChart.Services
 {
     public class AstroService
     {
@@ -18,27 +14,18 @@ namespace AstroTEXT.Services
         public AstroService()
         {
             _swiss = new SwissEph();
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ephe");
-            /*  sepl_18.se1
-                semo_18.se1
-                sase_18.se1 */
-            _swiss.swe_set_ephe_path(path);
+            _swiss.swe_set_ephe_path(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ephe"));
         }
 
-        public List<CelestialBody> Calculate(DateTime utcTime)
+        public List<CelestialBody> Calculate(DateTime utcTime, double longitude, double latitude, char houseSystem, int[] selectedBodies)
         {
             var bodies = new List<CelestialBody>();
             double julDay = _swiss.swe_julday(
                 utcTime.Year, utcTime.Month, utcTime.Day,
                 utcTime.TimeOfDay.TotalHours, SwissEph.SE_GREG_CAL);
 
-            // 计算主要天体 (日、月、水...冥王)
-            int[] planetIds = { SwissEph.SE_SUN, SwissEph.SE_MOON, SwissEph.SE_MERCURY,
-                          SwissEph.SE_VENUS, SwissEph.SE_MARS, SwissEph.SE_JUPITER,
-                          SwissEph.SE_SATURN, SwissEph.SE_URANUS, SwissEph.SE_NEPTUNE,
-                          SwissEph.SE_PLUTO };
-
-            foreach (int id in planetIds)
+            // 计算用户选择的行星和特殊点
+            foreach (int id in selectedBodies)
             {
                 double[] pos = new double[6];
                 string err = "";
@@ -51,8 +38,56 @@ namespace AstroTEXT.Services
                     Speed = pos[3]
                 });
             }
+
+            // 精确计算春分点
+            var vernalPoint = _swiss.swe_get_ayanamsa(julDay) % 360;
+            if (Array.IndexOf(selectedBodies, SwissEph.SE_ECL_NUT) != -1)
+            {
+                bodies.Add(new CelestialBody { Name = "春分点", Longitude = vernalPoint });
+            }
+
+            // 计算宫位系统
+            double[] cusps = new double[14];
+            double[] ascmc = new double[10];
+            _swiss.swe_houses(julDay, latitude, longitude, houseSystem, cusps, ascmc);
+
+            // 添加四轴
+            bodies.AddRange(new[] {
+                new CelestialBody { Name="上升", Longitude=Mod360(ascmc[0]), IsAngle=true },
+                new CelestialBody { Name="天顶", Longitude=Mod360(ascmc[1]), IsAngle=true },
+                new CelestialBody { Name="下降", Longitude=Mod360(ascmc[0] + 180), IsAngle=true },
+                new CelestialBody { Name="天底", Longitude=Mod360(ascmc[1] + 180), IsAngle=true }
+            });
+
+            // 计算宫位
+            foreach (var body in bodies.Where(b => !b.IsAngle))
+            {
+                body.House = CalculateHouse(body.Longitude, cusps);
+            }
+
             return bodies;
         }
+
+        private int CalculateHouse(double bodyLon, double[] cusps)
+        {
+            bodyLon = Mod360(bodyLon);
+            for (int i = 1; i <= 12; i++)
+            {
+                double start = Mod360(cusps[i]);
+                double end = Mod360(cusps[i + 1]);
+                if (start > end) end += 360;
+                double bl = bodyLon < start ? bodyLon + 360 : bodyLon;
+
+                if (bl >= start && bl < end)
+                    return i;
+            }
+            return 1;
+        }
+
+        private double Mod360(double value) => (value % 360 + 360) % 360;
+
+
+        // 见文档 https://www.astro.com/swisseph/swephprg.htm#_Toc112949032 ，3.2. Bodies (int ipl)
 
         private string GetPlanetName(int id) => id switch
         {
@@ -66,6 +101,8 @@ namespace AstroTEXT.Services
             SwissEph.SE_URANUS => "天王星",
             SwissEph.SE_NEPTUNE => "海王星",
             SwissEph.SE_PLUTO => "冥王星",
+            SwissEph.SE_MEAN_NODE => "北交点",
+            SwissEph.SE_ECL_NUT => "春分点",
             _ => "未知"
         };
     }

@@ -4689,11 +4689,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LingL\\Documents\\_Programmes\\Astro2\\AstroTEXT.csproj",
+      "projectUniqueName": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\AstroTEXT.csproj",
       "projectName": "AstroTEXT",
-      "projectPath": "C:\\Users\\LingL\\Documents\\_Programmes\\Astro2\\AstroTEXT.csproj",
+      "projectPath": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\AstroTEXT.csproj",
       "packagesPath": "C:\\Users\\LingL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LingL\\Documents\\_Programmes\\Astro2\\obj\\",
+      "outputPath": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

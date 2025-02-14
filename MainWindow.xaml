@@ -1,51 +1,80 @@
-﻿<Window x:Class="AstrologyChart.MainWindow"
+﻿<!-- MainWindow.xaml -->
+<Window x:Class="AstrologyChart.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:AstrologyChart"
         mc:Ignorable="d"
-        Title="AstroChart for LLMs - 以字符形式输出星盘" Height="600" Width="800">
+        Title="AstroChart for LLMs - 为语言模型制作的文字星盘 （框架）" Height="600" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <!-- 设置面板 -->
-        <StackPanel Margin="10" MinWidth="300">
-            <GroupBox Header="基础设置">
+        <StackPanel Margin="10">
+            <GroupBox Header="出生信息">
                 <StackPanel>
-                    <DatePicker x:Name="dtPicker" SelectedDate="{Binding DateTime}"/>
-                    <ComboBox x:Name="cmbTimeZone" DisplayMemberPath="Id"/>
-                    <ComboBox x:Name="cmbHouseSystem" SelectedIndex="0">
-                        <sys:String>整宫制</sys:String>
-                    </ComboBox>
-                </StackPanel>
-            </GroupBox>
-
-            <GroupBox Header="相位设置（左侧输入角度|右侧输入容许度）">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="txtDegree" Width="80" Margin="5"/>
-                        <TextBox x:Name="txtOrb" Width="80" Margin="5"/>
-                        <Button Content="添加" Click="AddAspect_Click"/>
+                    <!-- 年、月、日选择 -->
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <ComboBox x:Name="cmbYear" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <ComboBox x:Name="cmbMonth" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <ComboBox x:Name="cmbDay" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
                     </StackPanel>
-                    <ListBox x:Name="lstAspects" Height="120" ItemsSource="{Binding Aspects}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding DisplayText}"/>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    <!-- 时、分、秒选择 -->
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <ComboBox x:Name="cmbHour" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <ComboBox x:Name="cmbMinute" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <ComboBox x:Name="cmbSecond" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                    </StackPanel>
+
+                    <!-- 经纬度输入 -->
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBox x:Name="txtLongitude" Width="80" Margin="5"
+                                 PreviewTextInput="DoubleValidation" Tag="经度"/>
+                        <TextBlock Text="经度 (E)"/>
+                        <TextBox x:Name="txtLatitude" Width="80" Margin="5"
+                                 PreviewTextInput="DoubleValidation" Tag="纬度"/>
+                        <TextBlock Text="纬度 (N)"/>
+                    </StackPanel>
                 </StackPanel>
             </GroupBox>
 
-            <Button Content="生成" Click="Generate_Click" Margin="0 20"/>
+            <!-- 分宫制选择 -->
+            <GroupBox Header="宫制系统" Margin="0 10">
+                <ComboBox x:Name="cmbHouseSystem" SelectedIndex="0">
+                    <!-- 这里的 ItemsSource 会在代码后台初始化 -->
+                </ComboBox>
+            </GroupBox>
+
+            <!-- 计算天体选择 -->
+            <GroupBox Header="计算天体">
+                <ListBox x:Name="lstBodies" SelectionMode="Multiple" Height="120">
+                    <ListBoxItem Tag="0" IsSelected="True">太阳</ListBoxItem>
+                    <ListBoxItem Tag="1" IsSelected="True">月亮</ListBoxItem>
+                    <ListBoxItem Tag="2" IsSelected="True">水星</ListBoxItem>
+                    <ListBoxItem Tag="3" IsSelected="True">金星</ListBoxItem>
+                    <ListBoxItem Tag="4" IsSelected="True">火星</ListBoxItem>
+                    <ListBoxItem Tag="5" IsSelected="True">木星</ListBoxItem>
+                    <ListBoxItem Tag="6" IsSelected="True">土星</ListBoxItem>
+                    <ListBoxItem Tag="7" IsSelected="True">天王星</ListBoxItem>
+                    <ListBoxItem Tag="8" IsSelected="True">海王星</ListBoxItem>
+                    <ListBoxItem Tag="9" IsSelected="True">冥王星</ListBoxItem>
+                    <ListBoxItem Tag="10" IsSelected="True">北交点</ListBoxItem>
+                    <!--<ListBoxItem Tag="0" IsSelected="True">春分点</ListBoxItem>-->
+                </ListBox>
+            </GroupBox>
+
+            <Button Content="生成星盘" Click="Generate_Click" Margin="0 20"/>
         </StackPanel>
 
-        <!-- 结果显示 -->
-        <TextBox Grid.Column="1" x:Name="txtResult" Margin="10" 
-                 VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+        <StackPanel Grid.Column="1" Margin="10">
+            <!-- 结果显示文本框 -->
+            <TextBox x:Name="txtResult" Margin="0 0 0 10"
+                     VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" MinHeight="100" MaxHeight="300"/>
+            <!-- 复制按钮 -->
+            <Button Content="一键复制" Click="Copy_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Models/CelestialBody.cs
+using System;
 
-namespace AstroTEXT.Models
+namespace AstrologyChart.Models
 {
     public class CelestialBody
     {
         public string Name { get; set; }
         public double Longitude { get; set; }
         public double Speed { get; set; }
+        public int House { get; set; }
+
+        public bool IsAngle {  get; set; }
         public string ZodiacSign => GetZodiac(Longitude);
+        public double ZodiacDegrees => Longitude % 30;
 
         private static string GetZodiac(double lon)
         {
@@ -20,7 +21,5 @@ namespace AstroTEXT.Models
             int index = (int)(lon / 30);
             return signs[index];
         }
-
-        public double ZodiacDegrees => Longitude % 30;
     }
 }
