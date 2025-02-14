@@ -7,12 +7,20 @@
       "RelativeMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|c:\\users\\lingl\\documents\\_programmes\\astrochart-for-llms\\services\\aspectcalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|solutionrelative:services\\aspectcalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|c:\\users\\lingl\\documents\\_programmes\\astrochart-for-llms\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|c:\\users\\lingl\\documents\\_programmes\\astrochart-for-llms\\models\\aspectsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|solutionrelative:models\\aspectsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|c:\\users\\lingl\\documents\\_programmes\\astrochart-for-llms\\services\\astroservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|solutionrelative:services\\astroservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|c:\\users\\lingl\\documents\\_programmes\\astrochart-for-llms\\services\\aspectcalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|solutionrelative:services\\aspectcalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|c:\\users\\lingl\\documents\\_programmes\\astrochart-for-llms\\models\\geodata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,14 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|c:\\users\\lingl\\documents\\_programmes\\astrochart-for-llms\\models\\celestialbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|solutionrelative:models\\celestialbody.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|c:\\users\\lingl\\documents\\_programmes\\astrochart-for-llms\\services\\astroservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|solutionrelative:services\\astroservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|c:\\users\\lingl\\documents\\_programmes\\astrochart-for-llms\\models\\aspectsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|solutionrelative:models\\aspectsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1BF661F7-FCAB-4C4E-BB40-7540F058A19C}|AstroTEXT.csproj|c:\\users\\lingl\\documents\\_programmes\\astrochart-for-llms\\services\\geoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -73,54 +73,41 @@
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\MainWindow.xaml*",
+              "RelativeToolTip": "MainWindow.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-02-12T06:04:42.233Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "AspectSetting.cs",
               "DocumentMoniker": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\Models\\AspectSetting.cs",
               "RelativeDocumentMoniker": "Models\\AspectSetting.cs",
               "ToolTip": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\Models\\AspectSetting.cs",
               "RelativeToolTip": "Models\\AspectSetting.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-12T10:11:42.456Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "AstroService.cs",
               "DocumentMoniker": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\Services\\AstroService.cs",
               "RelativeDocumentMoniker": "Services\\AstroService.cs",
               "ToolTip": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\Services\\AstroService.cs",
               "RelativeToolTip": "Services\\AstroService.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAIwDgAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAADcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-12T10:12:51.454Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAABAAAAAAAAAAAtwBEBAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T06:04:27.872Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "GeoData.cs",
               "DocumentMoniker": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\Models\\GeoData.cs",
               "RelativeDocumentMoniker": "Models\\GeoData.cs",
@@ -128,8 +115,7 @@
               "RelativeToolTip": "Models\\GeoData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T01:40:52.374Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-14T01:40:52.374Z"
             },
             {
               "$type": "Document",
@@ -145,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "CelestialBody.cs",
               "DocumentMoniker": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\Models\\CelestialBody.cs",
               "RelativeDocumentMoniker": "Models\\CelestialBody.cs",
@@ -153,12 +139,24 @@
               "RelativeToolTip": "Models\\CelestialBody.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T10:10:03.255Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-12T10:10:03.255Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAAOoAAAAAAAAAAAAuwOkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T06:04:27.872Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AspectCalculator.cs",
               "DocumentMoniker": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\Services\\AspectCalculator.cs",
               "RelativeDocumentMoniker": "Services\\AspectCalculator.cs",
@@ -166,8 +164,7 @@
               "RelativeToolTip": "Services\\AspectCalculator.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAADwvxEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T10:14:37.657Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-12T10:14:37.657Z"
             },
             {
               "$type": "Document",

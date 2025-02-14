@@ -27,8 +27,9 @@ namespace AstrologyChart
         public MainWindow()
         {
             InitializeComponent();
-            InitializeTimeComboBoxes(); // 初始化时间下拉选项
-            InitializeHouseSystemComboBox(); // 初始化分宫制下拉菜单
+            InitializeTimeComboBoxes(); // 时间
+            InitializeTimeZoneComboBox(); //时区
+            InitializeHouseSystemComboBox(); // 分宫制
             InitializeAspects();
             InitializeView();
         }
@@ -39,11 +40,11 @@ namespace AstrologyChart
             _aspectViewSource.View.SortDescriptions.Clear();
             _aspectViewSource.View.SortDescriptions.Add(new SortDescription("PhaseType", ListSortDirection.Ascending));
             _aspectViewSource.View.SortDescriptions.Add(new SortDescription("Degree", ListSortDirection.Descending));
-            // 这里原代码中的 dgAspects 未使用到，可以考虑移除相关代码
-            // dgAspects.ItemsSource = _aspectViewSource.View;
+            
+            // dgAspects.ItemsSource = _aspectViewSource.View;//未使用到，可以考虑移除
         }
 
-        private void InitializeTimeComboBoxes()
+        private void InitializeTimeComboBoxes()//时间
         {
             // 初始化年份下拉框，范围从 1900 到 2100
             for (int year = 1900; year <= 2100; year++)
@@ -83,17 +84,28 @@ namespace AstrologyChart
             }
             cmbSecond.SelectedItem = DateTime.Now.Second;
         }
+        private void InitializeTimeZoneComboBox()
+        {
+            // 获取所有可用的时区
+            var timeZones = TimeZoneInfo.GetSystemTimeZones();
+            cmbTimeZone.ItemsSource = timeZones;
+            cmbTimeZone.DisplayMemberPath = "DisplayName";
+            // 默认选择系统当前时区
+            cmbTimeZone.SelectedItem = TimeZoneInfo.Local;
+        }
+
+        
 
         private void InitializeHouseSystemComboBox()
         {
             // 初始化宫制下拉菜单
             cmbHouseSystem.ItemsSource = new Dictionary<string, char> {
-                {"整宫制 Whole", 'W'}, {"Koch", 'K'}, {"Placidus", 'P'}, {"Campanus", 'C'},
+                {"Whole", 'W'}, {"Koch", 'K'}, {"Placidus", 'P'}, {"Campanus", 'C'},
                 {"Equal", 'E'}, {"Vehlow", 'V'}, {"Porphyrius", 'L'}, {"Regiomontanus", 'R'},
                 {"Bianchini", 'B'}, {"Sunshine", 'U'}, {"Polich/Page", 'T'}, {"Carter", 'N'},
                 {"McCla", 'M'}, {"Morinus", 'O'}, {"Hindu", 'I'}, {"Tropical", 'X'}
             }.Select(p => new { Display = p.Key, Value = p.Value });
-            cmbHouseSystem.SelectedIndex = 0;
+            cmbHouseSystem.SelectedIndex = 0;// 默认整宫制
         }
 
         private void InitializeAspects()
@@ -295,7 +307,7 @@ namespace AstrologyChart
                 {
                     string applying = aspect.IsApplying ? "入相位" : "出相位";
                     var body1 = aspect.Body1.Name;
-                    sb.AppendLine($"{(aspect.Body1.IsAngle ? "" : $"第{aspect.Body1.House}宫的")}{aspect.Body1.Name}与{(aspect.Body2.IsAngle ? "" : $"第{aspect.Body2.House}宫的")}{aspect.Body2.Name}形成{group.Degree}°相位（误差{aspect.Deviation:F2}度，{applying}）");
+                    sb.AppendLine($"{aspect.Body1.ZodiacSign}座{(aspect.Body1.IsAngle ? "" : $"第{aspect.Body1.House}宫的")}{aspect.Body1.Name}与{aspect.Body2.ZodiacSign}座{(aspect.Body2.IsAngle ? "" : $"第{aspect.Body2.House}宫的")}{aspect.Body2.Name}呈{group.Degree}°相位（误差{aspect.Deviation:F2}度，{applying}）");
                 }
             }
             return sb.ToString();

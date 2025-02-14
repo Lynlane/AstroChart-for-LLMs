@@ -53,10 +53,10 @@ namespace AstrologyChart.Services
 
             // 添加四轴
             bodies.AddRange(new[] {
-                new CelestialBody { Name="上升", Longitude=Mod360(ascmc[0]), IsAngle=true },
-                new CelestialBody { Name="天顶", Longitude=Mod360(ascmc[1]), IsAngle=true },
-                new CelestialBody { Name="下降", Longitude=Mod360(ascmc[0] + 180), IsAngle=true },
-                new CelestialBody { Name="天底", Longitude=Mod360(ascmc[1] + 180), IsAngle=true }
+                new CelestialBody { Name=" Asc ", Longitude=Mod360(ascmc[0]), IsAngle=true },
+                new CelestialBody { Name=" MC ", Longitude=Mod360(ascmc[1]), IsAngle=true },
+                new CelestialBody { Name=" Desc ", Longitude=Mod360(ascmc[0] + 180), IsAngle=true },
+                new CelestialBody { Name=" IC ", Longitude=Mod360(ascmc[1] + 180), IsAngle=true }
             });
 
             // 计算宫位
