@@ -18,7 +18,7 @@ namespace AstrologyChart.Models
         {
             get => _isEnabled;
             set { _isEnabled = value; OnPropertyChanged(); }
-        }
+        } 
 
 
         public PhaseType PhaseType

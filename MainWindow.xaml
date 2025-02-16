@@ -5,35 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AstrologyChart"
         mc:Ignorable="d"
-        Title="AstroChart for LLMs - 为语言模型制作的文字星盘 （原型）" Height="600" Width="800">
+        Title="AstroChart for LLMs - 为语言模型制作的文字星盘 （原型）" Height="600" Width="1100">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
         <StackPanel Margin="10">
-            <GroupBox Header="时空参数">
+            <GroupBox Header="星图1">
                 <StackPanel>
+                    <TextBox x:Name="txtChart1Name" Margin="5" Text="本命盘"/>
                     <!-- 年、月、日选择 -->
                     <StackPanel Orientation="Horizontal" Margin="5">
-                        <ComboBox x:Name="cmbYear" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
-                        <ComboBox x:Name="cmbMonth" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
-                        <ComboBox x:Name="cmbDay" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <ComboBox x:Name="cmbYear" Width="56" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <TextBlock Text="年 "/>
+                        <ComboBox x:Name="cmbMonth" Width="42" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <TextBlock Text="月 "/>
+                        <ComboBox x:Name="cmbDay" Width="42" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <TextBlock Text="日 "/>
                     </StackPanel>
                     <!-- 时、分、秒选择 -->
                     <StackPanel Orientation="Horizontal" Margin="5">
-                        <ComboBox x:Name="cmbHour" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
-                        <ComboBox x:Name="cmbMinute" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
-                        <ComboBox x:Name="cmbSecond" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <ComboBox x:Name="cmbHour" Width="42" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <TextBlock Text="时 "/>
+                        <ComboBox x:Name="cmbMinute" Width="42" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <TextBlock Text="分 "/>
+                        <ComboBox x:Name="cmbSecond" Width="42" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <TextBlock Text="秒 "/>
                     </StackPanel>
-
                     <!-- 时区选择 -->
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <ComboBox x:Name="cmbTimeZone" Width="200" />
                         <TextBlock Text="时区"/>
                     </StackPanel>
-
                     <!-- 经纬度输入 -->
                     <StackPanel Orientation="Horizontal" Margin="0 5">
                         <TextBox x:Name="txtLongitude" Width="80" Margin="5"
@@ -45,14 +50,61 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
+            <Button Content="添加星图2" Click="AddChart2_Click" x:Name="btnAddChart2" Margin="0 10" Visibility="Collapsed"/>
 
+            <GroupBox Header="星图2" x:Name="grpChart2" >
+                <StackPanel>
+                    <TextBlock Text="名称："/>
+                    <TextBox x:Name="txtChart2Name" Margin="5" Text="天象盘"/>
+                    <!-- 年、月、日选择 -->
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <ComboBox x:Name="cmbYear2" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <ComboBox x:Name="cmbMonth2" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <ComboBox x:Name="cmbDay2" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                    </StackPanel>
+                    <!-- 时、分、秒选择 -->
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <ComboBox x:Name="cmbHour2" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <ComboBox x:Name="cmbMinute2" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                        <ComboBox x:Name="cmbSecond2" Width="60" PreviewMouseWheel="TimeCombo_MouseWheel"/>
+                    </StackPanel>
+                    <!-- 时区选择 -->
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <ComboBox x:Name="cmbTimeZone2" Width="200" />
+                        <TextBlock Text="时区"/>
+                    </StackPanel>
+                    <!-- 经纬度输入 -->
+                    <StackPanel Orientation="Horizontal" Margin="0 5">
+                        <TextBox x:Name="txtLongitude2" Width="80" Margin="5"
+                                 PreviewTextInput="DoubleValidation" Tag="经度" Text="121"/>
+                        <TextBlock Text="经度 (E)"/>
+                        <TextBox x:Name="txtLatitude2" Width="80" Margin="5"
+                                 PreviewTextInput="DoubleValidation" Tag="纬度" Text="30"/>
+                        <TextBlock Text="纬度 (N)"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <Button Content="删除星图2" Click="RemoveChart2_Click" x:Name="btnRemoveChart2" Margin="0 10" Visibility="Visible"/>
             <!-- 分宫制选择 -->
             <GroupBox Header="宫制" Margin="0 10">
                 <ComboBox x:Name="cmbHouseSystem" SelectedIndex="0">
                     <!-- 这里的 ItemsSource 会在代码后台初始化 -->
                 </ComboBox>
             </GroupBox>
+            <GroupBox Header="岁差模型" Margin="0 10">
+                <ComboBox x:Name="cmbZodiacSystem" Margin="5">
+                    <ComboBoxItem Content="回归黄道" IsSelected="True"/>
+                    <ComboBoxItem Content="恒星黄道"/>
+                </ComboBox>
+            </GroupBox>
 
+        </StackPanel>
+        
+        
+        
+        
+        
+        <StackPanel Grid.Column="1" Margin="10">
             <!-- 计算天体选择 -->
             <GroupBox Header="计算天体">
                 <ListBox x:Name="lstBodies" SelectionMode="Multiple" Height="120">
@@ -70,21 +122,29 @@
                     <!--<ListBoxItem Tag="0" IsSelected="True">春分点</ListBoxItem>-->
                 </ListBox>
             </GroupBox>
-
+            <GroupBox Header="相位配置" Margin="0 10">
+                <DataGrid x:Name="dgAspects"  CanUserAddRows="True" CanUserSortColumns="True" IsReadOnly="False" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn  Binding="{Binding IsEnabled}" Width="10" CanUserResize="False"/>
+                        <DataGridTextColumn Header="相位 (°)" Binding="{Binding Degree}" Width="*" CanUserResize="False"/>
+                        <DataGridTextColumn Header="容许度 (°)" Binding="{Binding Orb}" Width="*" CanUserResize="False"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+            <CheckBox x:Name="chkOutputInterChartAspects" Content="输出两星图之间的相位关系"/>
             <Button Content="生成" Click="Generate_Click" Margin="0 20"/>
         </StackPanel>
-
-        <StackPanel Grid.Column="1" Margin="10">
+        
+        
+        
+        
+        
+        <StackPanel Grid.Column="2" Margin="10">
             <!-- 结果显示文本框 -->
             <TextBox x:Name="txtResult" Margin="0 0 0 10"
                      VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" MinHeight="100" MaxHeight="300"/>
             <!-- 复制按钮 -->
             <Button Content="复制" Click="Copy_Click"/>
-            <TextBlock xml:space="preserve">
-P.S. : 内容看起来长,但不很消耗Tokens~ 而且能降低推理成本并提高准确率~
-                
-P.P.S. : 基本功能都完成后会考虑美化，现在还是原型搭建
-            </TextBlock>
         </StackPanel>
     </Grid>
 </Window>

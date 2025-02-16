@@ -17,9 +17,9 @@ namespace AstrologyChart.Services
             _swiss.swe_set_ephe_path(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ephe"));
         }
 
-        public List<CelestialBody> Calculate(DateTime utcTime, double longitude, double latitude, char houseSystem, int[] selectedBodies)
+        public List<CelestialBody> Calculate(DateTime utcTime, double longitude, double latitude, char houseSystem, int[] selectedBodies , bool is_Tropical_not_Sidereal)
         {
-            var bodies = new List<CelestialBody>();
+            var bodies = new List<CelestialBody>();//返回值
             double julDay = _swiss.swe_julday(
                 utcTime.Year, utcTime.Month, utcTime.Day,
                 utcTime.TimeOfDay.TotalHours, SwissEph.SE_GREG_CAL);
@@ -39,11 +39,19 @@ namespace AstrologyChart.Services
                 });
             }
 
-            // 精确计算春分点
-            var vernalPoint = _swiss.swe_get_ayanamsa(julDay) % 360;
-            if (Array.IndexOf(selectedBodies, SwissEph.SE_ECL_NUT) != -1)
+            // 计算春分点
+            if (is_Tropical_not_Sidereal)
             {
-                bodies.Add(new CelestialBody { Name = "春分点", Longitude = vernalPoint });
+                //（恒星黄道）
+                double vernalPoint = _swiss.swe_get_ayanamsa(julDay) % 360;
+                CelestialBody vernalPointBody = new CelestialBody { Name = "春分点", Longitude = vernalPoint };
+                bodies.Add(vernalPointBody);
+            }
+            else
+            {
+                // （回归黄道）
+                CelestialBody vernalPointBody = new CelestialBody { Name = "春分点", Longitude = 0 };
+                bodies.Add(vernalPointBody);
             }
 
             // 计算宫位系统
@@ -68,7 +76,7 @@ namespace AstrologyChart.Services
             return bodies;
         }
 
-        private int CalculateHouse(double bodyLon, double[] cusps)
+        private int CalculateHouse(double bodyLon, double[] cusps)//宫位
         {
             bodyLon = Mod360(bodyLon);
             for (int i = 1; i <= 12; i++)
@@ -102,7 +110,7 @@ namespace AstrologyChart.Services
             SwissEph.SE_NEPTUNE => "海王星",
             SwissEph.SE_PLUTO => "冥王星",
             SwissEph.SE_MEAN_NODE => "北交点",
-            SwissEph.SE_ECL_NUT => "春分点",
+            //SwissEph.SE_ECL_NUT => "春分点",
             _ => "未知"
         };
     }

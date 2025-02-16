@@ -14,7 +14,7 @@ namespace AstrologyChart.Models
         public string ZodiacSign => GetZodiac(Longitude);
         public double ZodiacDegrees => Longitude % 30;
 
-        private static string GetZodiac(double lon)
+        private static string GetZodiac(double lon)//获取星座
         {
             string[] signs = { "白羊", "金牛", "双子", "巨蟹", "狮子", "处女",
                           "天秤", "天蝎", "射手", "摩羯", "水瓶", "双鱼" };

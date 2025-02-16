@@ -45,6 +45,41 @@ namespace AstrologyChart.Services
             return results;
         }
 
+
+        public static List<AspectResult> CalculateAspects(List<CelestialBody> bodies1, List<CelestialBody> bodies2, List<AspectSetting> settings)
+        {
+            var results = new List<AspectResult>();
+
+            foreach (var a in bodies1)
+            {
+                foreach (var b in bodies2)
+                {
+                    if (a.IsAngle && b.IsAngle) continue; // 不输出四轴^四轴的相位
+                    foreach (var set in settings.OrderBy(s => s.PhaseType).ThenByDescending(s => s.Degree))
+                    {
+                        double angle = CalculateAngle(a.Longitude, b.Longitude);
+                        double deviation = Math.Abs(angle - set.Degree);
+
+                        if (deviation <= set.Orb)
+                        {
+                            results.Add(new AspectResult
+                            {
+                                Body1 = a,
+                                Body2 = b,
+                                Degree = set.Degree,
+                                Deviation = deviation,
+                                IsApplying = a.Speed > b.Speed
+                            });
+                        }
+                    }
+                }
+            }
+
+            return results;
+        }
+
+        
+
         private static double CalculateAngle(double lon1, double lon2)
         {
             double angle = Math.Abs(lon1 - lon2) % 360;

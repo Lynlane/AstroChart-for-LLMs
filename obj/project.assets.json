@@ -4689,9 +4689,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\AstroTEXT.csproj",
-      "projectName": "AstroTEXT",
-      "projectPath": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\AstroTEXT.csproj",
+      "projectUniqueName": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\Main.csproj",
+      "projectName": "Main",
+      "projectPath": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\Main.csproj",
       "packagesPath": "C:\\Users\\LingL\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\LingL\\Documents\\_Programmes\\AstroChart-for-LLMs\\obj\\",
       "projectStyle": "PackageReference",
